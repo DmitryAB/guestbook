@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Guestbook</title>
+</head>
+<body>
+    {%if messages %}
+    <ol>
+    {% for m in messages %}
+        <li>{{m.date|date:"h:i:s F j, Y" }} {{m.name}} said:<p>{{m.message}}</p>
+        </li>
+    {% endfor %}
+    </ol>
+    {% endif%}
+    
+    <form action="" method="post">{%csrf_token%}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
