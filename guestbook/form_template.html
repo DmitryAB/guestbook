@@ -3,24 +3,28 @@
 <html>
 <head>
     <title>Guestbook</title>
-<style type="text/css">
-   @media screen
-    p { 
-     font-size: 120%; 
-     font-family: Verdana, Arial, Helvetica, sans-serif; 
-     color: #333366; 
-   }
-  </style>
+    <style> 
+            b+p {
+  width: 50%; /* Ширина блока */
+  margin: 10px; /* Поля  вокруг элемента */
+  background: Bisque;
+  text-align: left;
+} 
+            b {color:navy;
+             text-align:left;}
+            body { background:NavajoWhite ;}</style>
 </head>
 <body> 
 
+    <div align="center">
+    
     {%if messages %}
-    <ol>
+    
     {% for m in messages %}
-        <li>{{m.date|date:"h:i:s F j, Y"|center:"50" }} {{m.name|center:"150" }} said:<p>{{m.message}}</p>
-        </li>
+        <b>№{{m.number}}. {{m.date|date:"h:i:s F j, Y" }}. {{m.name}} said:</b><p>{{m.message}}</p>
+        
     {% endfor %}
-    </ol>
+    
     {% endif%}
     
     <form action="" method="post">{%csrf_token%}
@@ -29,6 +33,7 @@
         </table>
         <input type="submit" value="Submit">
     </form>
+</div>
 
 </body>
 </html>
